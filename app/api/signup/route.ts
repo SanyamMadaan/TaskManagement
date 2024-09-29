@@ -2,8 +2,6 @@ import { NextRequest , NextResponse } from "next/server";
 import jwt from 'jsonwebtoken';
 import ConnectDB from "@/lib/db";
 import User from "@/lib/models";
-const KEY=process.env.KEY;
-console.log(KEY);
 
 export async function POST(req:NextRequest){
 
@@ -19,7 +17,14 @@ export async function POST(req:NextRequest){
 
     const user=await User.create({name,email,password});
     const ID=user._id;
-    const token=jwt.sign({ID},KEY)
+
+    const key:string | undefined=process.env.KEY;
+
+    if(!key){
+        return NextResponse.json({msg:'Key is missing'},{status:500});
+    }
+
+    const token=jwt.sign({ID},key)
 
     return NextResponse.json({"token":token},{status:200});
 
