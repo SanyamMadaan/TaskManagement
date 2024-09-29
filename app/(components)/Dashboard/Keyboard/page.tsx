@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
-const page = () => {
-  return (
-    <div>
-      This Logic will be implemented soon
-    </div>
-  )
-}
+const Page = () => {
+  return <div>This Logic will be implemented soon</div>;
+};
 
-export default page
+export default Page;

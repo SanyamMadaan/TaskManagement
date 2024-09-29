@@ -1,10 +1,15 @@
-const mongoose=require('mongoose');
+import mongoose from "mongoose";
 
-export default async function ConnectDB(){
-try{
-    const response=await mongoose.connect(process.env.DATABASE_URL);
-    console.log('Connected to MongoDB');
-}catch(e){
-    console.log('error while connecting to database');
-}
+const URL: string | undefined = process.env.DATABASE_URL;
+
+export default async function ConnectDB() {
+  try {
+    if (!URL) {
+      throw new Error("DATABASE_URL is not defined");
+    }
+    await mongoose.connect(URL);
+    console.log("Connected to MongoDB");
+  } catch (e) {
+    console.error("Error while connecting to database:", e);
+  }
 }
