@@ -81,7 +81,7 @@ const Page = () => {
           <p className="text-white">New User?</p>
         </div>
         <div className="ml-2">
-          <Link href="/signup">
+          <Link href="/Signup">
             <p className="text-white cursor-pointer text-xl underline">
               Sign Up
             </p>
