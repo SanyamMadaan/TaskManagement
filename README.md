@@ -1,3 +1,14 @@
+
+![WhatsApp Image 2024-09-29 at 05 11 57_a7912d6c](https://github.com/user-attachments/assets/431d9b6e-41ef-4ec6-b22e-de576dc908f8)
+
+
+![WhatsApp Image 2024-09-29 at 05 12 25_0174fcdb](https://github.com/user-attachments/assets/036f0a67-1eb3-44e2-a9cb-0bc6d8265b22)
+
+
+![image](https://github.com/user-attachments/assets/b6a36ec4-0cea-4917-ae37-8d8b38ef3ef4)
+
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
