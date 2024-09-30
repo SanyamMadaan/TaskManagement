@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import axios from "axios";
+import axios ,{AxiosError} from "axios";
 import { useRouter } from "next/navigation";
 
 const Page = () => {
@@ -33,32 +33,39 @@ const Page = () => {
         router.push("/Dashboard/TaskLists");
         setBtn("Sign In");
       }
-    } catch (error) {
+    } catch (error:unknown) {
       setBtn("Sign In");
+      if(error instanceof AxiosError && error.response){
+        const errorfrombackend=error.response.data.error || "An unexpected error";
+        alert(errorfrombackend);
+      }
+      else{
+        alert("Invalid Email or Password");
+      }
       console.error(error);
-      alert("Invalid Email Id or Password");
+      
     }
   }
 
   return (
     <main className="bg-black h-screen flex flex-col items-center justify-center">
       <div>
-        <h1 className="mb-4 text-white text-3xl font-bold">SIGN IN</h1>
+        <h1 className="mb-4 text-white text-4xl font-bold">SIGN IN</h1>
       </div>
 
       <form
         onSubmit={SignIn}
-        className="md:border-2 border-white md:p-5 flex items-center flex-col justify-center"
+        className="md:border-2 border-white md:p-5 flex items-center flex-col justify-center p-5 rounded-md"
       >
         <Input
-          className="border-2 border-white text-slate-400 p-4 text-xl lg:text-slate-100 w-full md:w-4/5 h-14  my-5"
+          className="border-2 p-4 rounded-md border-white  text-xl  w-full h-14 my-5 "
           type="email"
           placeholder="Enter your email"
           onChange={(e) => setEmail(e.target.value)}
           required
         />
         <Input
-          className="border-2 border-white text-slate-400 p-4 text-xl lg:text-slate-100 w-full md:w-4/5 h-14  my-5"
+          className="border-2 border-white rounded-md  p-4 text-xl  w-full h-14 my-5 "
           type="password"
           placeholder="Password..."
           onChange={(e) => setPassword(e.target.value)}

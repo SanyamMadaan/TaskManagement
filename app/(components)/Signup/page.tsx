@@ -57,31 +57,31 @@ const Page = () => {
 
       <form
         onSubmit={SignUp}
-        className="md:border-2 border-white md:p-3 flex items-center flex-col justify-center"
+        className="p-6 rounded-md md:border-2 border-white md:p-3 flex items-center flex-col justify-center"
       >
         <Input
-          className="border-2 border-white text-slate-400 p-5 text-xl lg:text-slate-100 w-full md:w-4/5 h-14 md:h-12  my-5"
+          className="rounded-md border-2 border-white p-5 text-xl  w-full  h-14 md:h-12  my-5"
           type="text"
           placeholder="Username"
           onChange={(e) => setName(e.target.value)}
           required
         />
         <Input
-          className="border-2 border-white text-slate-400 p-5 text-xl lg:text-slate-100 w-full md:w-4/5 h-14 md:h-12  my-5"
+          className="rounded-md border-2 border-white  p-5 text-xl  w-full  h-14 md:h-12  my-5"
           type="email"
           placeholder="Enter your email"
           onChange={(e) => setEmail(e.target.value)}
           required
         />
         <Input
-          className="border-2 border-white text-slate-400 p-5 text-xl lg:text-slate-100 w-full md:w-4/5 h-14 md:h-12  my-5"
+          className="rounded-md border-2 border-white  p-5 text-xl  w-full  h-14 md:h-12  my-5"
           type="password"
           placeholder="Password..."
           onChange={(e) => setPassword(e.target.value)}
           required
         />
         <Input
-          className="border-2 border-white text-slate-400 p-5 text-xl lg:text-slate-100 w-full md:w-4/5 h-14 md:h-12  my-5"
+          className="rounded-md border-2 border-white  p-5 text-xl  w-full  h-14 md:h-12  my-5"
           type="password"
           placeholder="Confirm Password..."
           onChange={(e) => setConfirmPassword(e.target.value)}
