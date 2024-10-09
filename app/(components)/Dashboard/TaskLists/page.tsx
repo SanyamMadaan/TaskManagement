@@ -26,7 +26,7 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const token = localStorage.getItem("token"); // Fetch your token from storage
+        const token = localStorage.getItem("token");
         const response = await axios.get(
           `${process.env.NEXT_PUBLIC_USER_API}/api/tasks`,
           {
@@ -60,10 +60,12 @@ export default function Dashboard() {
   const onSubmit = async (data: Task) => {
     try {
       const token = localStorage.getItem("token");
+      const userId = localStorage.getItem("userId"); // Assuming you store the userId in local storage
+
       if (selectedTask) {
         const response = await axios.put(
           `${process.env.NEXT_PUBLIC_USER_API}/api/tasks`,
-          { ...data, id: selectedTask._id },
+          { ...data, id: selectedTask._id, user: userId },
           { headers: { Authorization: `Bearer ${token}` } },
         );
         setTasks((prevTasks) =>
@@ -74,7 +76,7 @@ export default function Dashboard() {
       } else {
         const response = await axios.post(
           `${process.env.NEXT_PUBLIC_USER_API}/api/tasks`,
-          data,
+          { ...data, user: userId }, // Include userId here
           {
             headers: { Authorization: `Bearer ${token}` },
           },

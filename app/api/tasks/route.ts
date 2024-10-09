@@ -24,9 +24,26 @@ const authenticate = async (req: NextRequest): Promise<JwtPayload> => {
   }
 };
 
+// Set CORS headers
+const setCORSHeaders = (res: NextResponse) => {
+  res.headers.set('Access-Control-Allow-Origin', '*'); // Replace '*' with your allowed origin
+  res.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+};
+
+// Handle preflight requests
+export async function OPTIONS(req: NextRequest) {
+  const res = NextResponse.next();
+  setCORSHeaders(res);
+  return res;
+}
+
 // GET: Fetch all tasks for the authenticated user
 export async function GET(req: NextRequest) {
   await ConnectDB();
+  const res = NextResponse.json({});
+
+  setCORSHeaders(res);
 
   try {
     const decoded = await authenticate(req);
@@ -46,10 +63,12 @@ export async function GET(req: NextRequest) {
 // POST: Create a new task for the authenticated user
 export async function POST(req: NextRequest) {
   await ConnectDB();
+  const res = NextResponse.json({});
+
+  setCORSHeaders(res);
 
   try {
     const decoded = await authenticate(req);
-    console.log(decoded);
     const userId = decoded.Id;
 
     const { title, description, dueDate } = await req.json();
@@ -76,6 +95,9 @@ export async function POST(req: NextRequest) {
 // PUT: Update a task by ID for the authenticated user
 export async function PUT(req: NextRequest) {
   await ConnectDB();
+  const res = NextResponse.json({});
+
+  setCORSHeaders(res);
 
   const { id, title, description, dueDate } = await req.json();
 
@@ -111,6 +133,9 @@ export async function PUT(req: NextRequest) {
 // DELETE: Delete a task by ID for the authenticated user
 export async function DELETE(req: NextRequest) {
   await ConnectDB();
+  const res = NextResponse.json({});
+
+  setCORSHeaders(res);
 
   const { id } = await req.json();
 
